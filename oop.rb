@@ -52,8 +52,24 @@ p vampire2
 #  it should have a dynamic color attribute (string)
 #  it should have a is_hungry attribute that is true by default
 #  it should have a eat method. If the dragon eats 4 times, it is no longer hungry
-
-
+times_eaten = 4
+class Dragon
+    def initialize(name, rider, color, is_hungry = true)
+        @name = name
+        @rider = rider
+        @color = color
+        @is_hungry = is_hungry
+    end
+    def eat(times_eaten)
+        if times_eaten >= 4 then @is_hungry = false
+        else @is_hungry = true
+        end
+    end 
+end
+dragon1 = Dragon.new("Abel", "Phineas", "blue")
+p dragon1
+dragon1.eat(3)
+p dragon1
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
 #  it should have a dynamic disposition attribute (string)
