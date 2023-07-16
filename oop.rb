@@ -31,19 +31,19 @@ class Vampire
     def initialize(name, pet = "bat", thirsty = true)
         @name = name
         @pet = pet
-        @thirsty = thirsty
+        @thirsty = true
     end
-    def drink(drink_status)
+    def drink
         @thirsty = false
     end
 end
 vampire1 = Vampire.new("Dracula", "cat")
 p vampire1
-vampire1.drink(true)
+vampire1.drink
 p vampire1
 vampire2 = Vampire.new("Nosferatu")
 p vampire2
-vampire2.drink(true)
+vampire2.drink
 p vampire2
 
 
@@ -58,7 +58,7 @@ class Dragon
         @name = name
         @rider = rider
         @color = color
-        @is_hungry = is_hungry
+        @is_hungry = true
     end
     def eat(times_eaten)
         if times_eaten >= 4 then @is_hungry = false
@@ -68,11 +68,13 @@ class Dragon
 end
 dragon1 = Dragon.new("Abel", "Phineas", "blue")
 p dragon1
-dragon1.eat(3)
+dragon1.eat(4)
 p dragon1
 # I wanted to code this in a way that when I would run the code/ each time I called the eat method, it would increase the times_eaten by 1. 
 # However, I could not figure out how to count the times code has been run, and instead coded times_eaten as an integer which could be reassigned.
-
+# I came back after learning the times loop from the Hobbit exercise, but could not figure out how to apply it in this exercise.
+# code I had tried:
+# 4.times { |food| p dragon1.eat(1) }
 
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
@@ -90,14 +92,18 @@ class Hobbit
         @is_adult = false
         @is_old = false
         @has_ring = false
+        if @name == "Frodo"
+            @has_ring = true
+        else 
+            @has_ring = false
+        end
     end
-    def celebrate_birthday(birthday_age)
-        @age = birthday_age + 1
-
+    def celebrate_birthday
+        @age = @age + 1
          if @age >= 33 
              @is_adult = true
         else
-             is_adult = false
+             @is_adult = false
          end
 
         if @age >= 101 
@@ -106,23 +112,22 @@ class Hobbit
             @is_old = false
         end
 
-        if @name == "Frodo"
-            @has_ring = true
-        else 
-            @has_ring = false
-        end
     end
 end
 hobbit1 = Hobbit.new("Frodo", "kind")
 p hobbit1
-hobbit1.celebrate_birthday(101)
+32.times { |birthdays| p hobbit1.celebrate_birthday}
 p hobbit1
+hobbit1.celebrate_birthday
 p hobbit1
 hobbit2 = Hobbit.new("Linus", "mean")
-hobbit2.celebrate_birthday(33)
+hobbit2.celebrate_birthday
+101.times { |birthdays| p hobbit2.celebrate_birthday}
 p hobbit2
 hobbit3 = Hobbit.new("Baby", "awful")
 p hobbit3
 
 # I encountered the same issue here as I did in the dragon exercise, where I was unsure as to how to increase the age by 1 each time the code was run/celebrate_birthday method was called.
-# Again, I ended up coding the previous_age parameter as an integer.
+# I ended up coding the previous_age parameter as an integer.
+# HOWEVER, after a long break, I came back to this code and with a little research, found a guide on the "times loop", which allowed me to run celebrate_birthday over and over again. 
+# While the terminal output for a hobbit age 102 was way too long, I did succeed in making it to where I could code an extra year in the age attribute each time the code was run.
